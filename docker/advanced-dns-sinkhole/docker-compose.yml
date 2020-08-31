@@ -1,0 +1,68 @@
+version: "3.1"
+
+services:
+
+  mongodb:
+    image: mongo:latest
+    volumes:
+      - mongodb:/data/db
+
+  mongoclient:
+    image: mongoclient/mongoclient:latest
+    depends_on:
+      - mongodb
+    ports:
+      - 3300:3000   
+    environment:
+      - MONGO_URL=mongodb://mongodb:27017
+      - MONGOCLIENT_DEFAULT_CONNECTION_URL=mongodb://mongodb:27017
+
+  luarchive:
+    image: luids/luarchive
+    volumes:
+      - ./etc/luids:/etc/luids
+    links:
+      - mongodb
+    
+  xlistd:
+    image: luids/xlistd
+    volumes:
+      - ./etc/luids:/etc/luids
+      - xlistdb:/var/lib/luids/xlist
+      - ./data/my-blacklist-malware.xlist:/var/lib/luids/xlist/my-blacklist-malware.xlist
+      - ./data/my-blacklist-phising.xlist:/var/lib/luids/xlist/my-blacklist-phising.xlist
+      - ./data/my-blacklist-reputation.xlist:/var/lib/luids/xlist/my-blacklist-reputation.xlist
+      - ./data/my-blacklist-ads.xlist:/var/lib/luids/xlist/my-blacklist-ads.xlist
+      - ./data/my-whitelist.xlist:/var/lib/luids/xlist/my-whitelist.xlist
+
+  xlget:
+    image: luids/xlget
+    volumes:
+      - ./etc/luids:/etc/luids
+      - xlistdb:/var/lib/luids/xlist
+
+  eventproc:
+    image: luids/eventproc
+    volumes:
+      - ./etc/luids:/etc/luids
+    links:
+      - luarchive
+
+  ludns:
+    image: luids/ludns
+    volumes:
+      - ./etc/luids:/etc/luids
+    ports:
+      - '1053:53'
+      - '1053:53/udp'
+    links:
+      - xlistd
+      - luarchive
+      - eventproc
+
+volumes:
+
+  xlistdb:
+
+  mongodb:
+

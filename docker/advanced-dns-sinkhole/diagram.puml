@@ -1,0 +1,69 @@
+@startuml
+
+cloud "Blacklists" {
+ [HTTP Server] -left- HTTP
+}
+
+cloud "DNS Resolvers" {
+ [DNS Resolver] -left- ExtDNS
+}
+
+node "Docker" {
+  node "docker-volumes" {
+    database "mongodb"
+    database "xlistdb"
+  }
+ 
+  node "mongo-container" {
+    [mongo] -left- TCP_27017 
+  }
+  [mongo] --> mongodb
+  
+  node "mongoclient-container" {
+    [mongoclient] - TCP_3000
+  }
+  [mongoclient] --> TCP_27017
+
+  node "xlget-container" {
+    [xlget] --> [xlistdb]
+  }
+  [xlget] --> HTTP
+
+  node "xlistd-container" {
+    [xlistd] -left- GRPC_X
+  }
+  [xlistd] --> [xlistdb]
+ 
+  node "luarchive-container" {
+    [luarchive] - GRPC_A
+  } 
+  [luarchive] --> TCP_27017
+  
+  node "eventproc-container" {
+    [eventproc] - GRPC_E
+  }
+  [eventproc] --> GRPC_A
+
+  node "ludns-container" {
+    [ludns] -left- IntDNS
+  }
+
+  [ludns] --> GRPC_X
+  [ludns] --> ExtDNS
+  [ludns] --> GRPC_E
+  [ludns] --> GRPC_A
+
+
+  [docker-proxy] --> IntDNS
+  [docker-proxy] --> TCP_3000
+  [docker-proxy] - DNS
+  [docker-proxy] - TCP_3300
+
+}
+
+node "Client" {
+  [DNS Client] --> DNS
+  [HTTP Client] --> TCP_3300
+}
+
+@enduml
