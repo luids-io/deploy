@@ -1,0 +1,31 @@
+version: "3.1"
+
+services:
+    
+  xlistd:
+    image: luids/xlistd
+    volumes:
+      - ./etc/luids:/etc/luids
+      - xlist:/var/lib/luids/xlist
+      - ./data/my-blacklist.xlist:/var/lib/luids/xlist/my-blacklist.xlist
+      - ./data/my-whitelist.xlist:/var/lib/luids/xlist/my-whitelist.xlist
+
+  xlget:
+    image: luids/xlget
+    volumes:
+      - ./etc/luids:/etc/luids
+      - xlist:/var/lib/luids/xlist
+
+  ludns:
+    image: luids/ludns
+    volumes:
+      - ./etc/luids:/etc/luids
+    ports:
+      - '1053:53'
+      - '1053:53/udp'
+    links:
+      - xlistd
+      
+volumes:
+
+  xlist:

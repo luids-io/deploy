@@ -1,0 +1,30 @@
+@startuml
+
+cloud "Blacklists" {
+ [HTTP Server] -left- HTTP
+}
+
+cloud "DNS Resolvers" {
+ [DNS Resolver] -left- ExtDNS
+}
+
+node "Docker" {
+  database "xlist"
+
+  [xlget] --> [xlist]
+  [xlist] --> [xlistd]
+  [xlget] --> HTTP
+  [xlistd] - GRPC_X
+  [ludns] --> GRPC_X
+  [ludns] --> ExtDNS
+  [ludns] - IntDNS
+
+  [docker-proxy] --> IntDNS
+  [docker-proxy] -left- DNS
+}
+
+node "Client" {
+  [DNS Client] --> DNS
+}
+
+@enduml
