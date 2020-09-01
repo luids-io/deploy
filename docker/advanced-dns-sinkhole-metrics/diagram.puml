@@ -1,0 +1,95 @@
+@startuml
+
+cloud "Blacklists" {
+ [HTTP Server] -left- HTTP
+}
+
+cloud "DNS Resolvers" {
+ [DNS Resolver] -left- ExtDNS
+}
+
+node "Docker" {
+  node "docker-volumes" {
+    database "mongodb"
+    database "xlistdb"
+    database "prometheusdb"
+  }
+ 
+  node "mongo-container" {
+    [mongo] - TCP_27017 
+  }
+  [mongo] --> mongodb
+  
+  node "mongoclient-container" {
+    [mongoclient] - TCP_3000M
+  }
+  [mongoclient] --> TCP_27017
+
+  node "mongoexport-container" {
+    [mongodb-exporter] -right- TCP_9216
+  }
+  [mongodb-exporter] --> TCP_27017
+
+  node "xlget-container" {
+    [xlget] --> [xlistdb]
+  }
+  [xlget] --> HTTP
+
+  node "xlistd-container" {
+    [xlistd] -left- GRPC_X
+    [xlistd] -right- TCP_8081X
+  }
+  [xlistd] --> [xlistdb]
+ 
+  node "luarchive-container" {
+    [luarchive] -left- GRPC_A
+    [luarchive] -right- TCP_8081A
+  } 
+  [luarchive] --> TCP_27017
+  
+  node "eventproc-container" {
+    [eventproc] -left- GRPC_E
+    [eventproc] -right- TCP_8081E
+  }
+  [eventproc] --> GRPC_A
+
+  node "ludns-container" {
+    [ludns] -left- IntDNS
+    [ludns] -right- TCP_9153
+  }
+  [ludns] --> GRPC_X
+  [ludns] --> ExtDNS
+  [ludns] --> GRPC_E
+  [ludns] --> GRPC_A
+
+  node "prometheus-container" {
+    [prometheus] - TCP_9090
+  }
+  [prometheus] --> prometheusdb
+  [prometheus] --> TCP_9216
+  [prometheus] --> TCP_8081X
+  [prometheus] --> TCP_8081A
+  [prometheus] --> TCP_8081E
+  [prometheus] --> TCP_9153
+
+  node "grafana-container" {
+    [grafana] - TCP_3000G
+  }  
+  [grafana] --> TCP_9090
+
+  [docker-proxy] --> IntDNS
+  [docker-proxy] --> TCP_3000M
+  [docker-proxy] --> TCP_3000G
+  [docker-proxy] -left- DNS
+  [docker-proxy] - TCP_3300
+  [docker-proxy] - TCP_3000
+
+}
+
+node "Client" {
+  [DNS Client] --> DNS
+  [HTTP Client] --> TCP_3300
+  [HTTP Client] --> TCP_3000
+}
+
+@enduml

@@ -1,0 +1,21 @@
+[archive.backend]
+files      = [ "/etc/luids/archive/backends.json" ]
+
+[archive.service]
+files      = [ "/etc/luids/archive/services.json" ]
+
+[service.event.archive]
+enable  = true
+service = "event"
+
+[service.dnsutil.archive]
+enable  = true
+service = "dns"
+
+[server]
+listenuri  = "tcp://0.0.0.0:5821"
+metrics    = true
+
+[health]
+listenuri  = "tcp://0.0.0.0:8081"
+metrics    = true
