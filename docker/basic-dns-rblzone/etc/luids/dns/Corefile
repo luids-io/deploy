@@ -1,0 +1,9 @@
+dnsbl.my-domain.lan {
+	idsapi
+	xlistrbl
+}
+
+. {
+	cache
+	forward . 8.8.8.8 8.8.4.4
+}

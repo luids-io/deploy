@@ -1,0 +1,27 @@
+@startuml
+
+cloud "DNS Blacklists" {
+ [DNS RBL Zone] -left- ExtRBL
+}
+
+
+cloud "DNS Resolvers" {
+ [DNS Resolver] -left- ExtDNS
+}
+
+node "Docker" {
+  [xlistd] --> [ExtRBL]
+  [xlistd] - GRPC_X
+  [ludns] --> GRPC_X
+  [ludns] --> ExtDNS
+  [ludns] - IntDNS
+
+  [docker-proxy] --> IntDNS
+  [docker-proxy] -left- DNS
+}
+
+node "Client" {
+  [DNS Client] --> DNS
+}
+
+@enduml

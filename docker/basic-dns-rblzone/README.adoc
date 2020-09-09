@@ -1,0 +1,10 @@
+= Basic DNS RBL zone to block Spam
+
+image::diagram.png[]
+
+[source,bash]
+----
+docker-compose up -d
+----
+
+A full guide can be found at https://luids.io/docs/xlist/es/guides/basic-dns-rblzone.html

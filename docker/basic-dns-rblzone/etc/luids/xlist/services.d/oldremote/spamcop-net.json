@@ -1,0 +1,19 @@
+[
+    {
+        "id": "spamcop.net",
+        "class": "dnsxl",
+        "name": "SpamCop Blocking List",
+        "web": "http://spamcop.net/bl.shtml",
+        "category": "blacklist",
+        "tags": [
+            "spam"
+        ],
+        "resources": [
+            "ip4"
+        ],
+        "source": "bl.spamcop.net",
+        "opts": {
+            "reason": "found in 'spamcop.net'"
+        }
+    }
+]
