@@ -13,6 +13,8 @@ node "Docker" {
     database "mongodb"
     database "xlistdb"
     database "prometheusdb"
+    database "archiveui_storage"
+    database "archiveui_ssl"
   }
  
   node "mongo-container" {
@@ -20,10 +22,6 @@ node "Docker" {
   }
   [mongo] --> mongodb
   
-  node "mongoclient-container" {
-    [mongoclient] - TCP_3000M
-  }
-  [mongoclient] --> TCP_27017
 
   node "mongoexport-container" {
     [mongodb-exporter] -right- TCP_9216
@@ -62,6 +60,15 @@ node "Docker" {
   [ludns] --> GRPC_E
   [ludns] --> GRPC_A
 
+  node "archiveui-container" {
+    [archiveui] - TCP_80
+    [archiveui] - TCP_443
+  }
+  [archiveui] --> TCP_27017
+  [archiveui] --> archiveui_storage
+  [archiveui] --> archiveui_ssl
+
+
   node "prometheus-container" {
     [prometheus] - TCP_9090
   }
@@ -80,9 +87,14 @@ node "Docker" {
   [docker-proxy] --> IntDNS
   [docker-proxy] --> TCP_3000M
   [docker-proxy] --> TCP_3000G
+  [docker-proxy] --> TCP_80
+  [docker-proxy] --> TCP_443
   [docker-proxy] -left- DNS
   [docker-proxy] - TCP_3300
   [docker-proxy] - TCP_3000
+  [docker-proxy] - TCP_8000
+  [docker-proxy] - TCP_8443
+
 
 }
 
@@ -90,6 +102,8 @@ node "Client" {
   [DNS Client] --> DNS
   [HTTP Client] --> TCP_3300
   [HTTP Client] --> TCP_3000
+  [HTTP Client] --> TCP_8000
+  [HTTP Client] --> TCP_8443
 }
 
 @enduml

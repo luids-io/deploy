@@ -7,15 +7,18 @@ services:
     volumes:
       - mongodb:/data/db
 
-  mongoclient:
-    image: mongoclient/mongoclient:latest
+  archiveui:
+    image: luids/archiveui:latest
     depends_on:
       - mongodb
     ports:
-      - 3300:3000   
+      - 8000:80
+      - 8443:443
     environment:
-      - MONGO_URL=mongodb://mongodb:27017
-      - MONGOCLIENT_DEFAULT_CONNECTION_URL=mongodb://mongodb:27017
+      - ARCHIVE_HOST=mongodb
+    volumes:
+      - archiveui_storage:/var/www/storage
+      - archiveui_ssl:/etc/apache2/ssl
 
   luarchive:
     image: luids/luarchive
@@ -65,4 +68,8 @@ volumes:
   xlistdb:
 
   mongodb:
+
+  archiveui_storage:
+
+  archiveui_ssl:
 
