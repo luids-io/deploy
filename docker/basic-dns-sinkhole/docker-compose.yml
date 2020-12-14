@@ -7,8 +7,7 @@ services:
     volumes:
       - ./etc/luids:/etc/luids
       - xlist:/var/lib/luids/xlist
-      - ./data/my-blacklist.xlist:/var/lib/luids/xlist/my-blacklist.xlist
-      - ./data/my-whitelist.xlist:/var/lib/luids/xlist/my-whitelist.xlist
+      - ./data:/var/lib/luids/xlist/local
 
   xlget:
     image: luids/xlget

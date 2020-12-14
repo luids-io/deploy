@@ -1,29 +1,25 @@
 [
     {
-        "disabled": false,
         "id": "my-blacklist",
         "class": "file",
         "name": "My custom blacklist",
-        "resources": [
-            "ip4",
-            "domain"
-        ],
+        "resources": [ "domain" ],
+        "source": "local/blacklist.xlist",
         "opts": {
             "autoreload": true,
+            "reloadseconds": 5,
             "reason": "found in 'my-blacklist'"
         }
     },
     {
-        "disabled": false,
         "id": "my-whitelist",
         "class": "file",
         "name": "My custom whitelist",
-        "resources": [
-            "ip4",
-            "domain"
-        ],
+        "resources": [ "domain" ],
+        "source": "local/whitelist.xlist",
         "opts": {
             "autoreload": true,
+            "reloadseconds": 5,
             "reason": "found in 'my-whitelist'"
         }
     }

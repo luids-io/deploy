@@ -20,4 +20,4 @@ Now all containers can be started...
 docker-compose up -d
 ----
 
-A full guide can be found at https://luids.io/docs/xlist/es/guides/basic-dns-sinkhole.html
+A full guide can be found at https://docs.luids.io/luids/es/guide-basic-dns-sinkhole/index.html

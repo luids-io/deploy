@@ -2,8 +2,9 @@
 datadir = "/var/lib/luids/xlist"
 
 [xlistd.service]
+dirs       = [ "/etc/luids/xlist/services.d/file",
+               "/etc/luids/xlist/services.d" ]
 files      = [ "/etc/luids/xlist/service.json" ]
-dirs       = [ "/etc/luids/xlist/services.d"   ]
 
 [server]
 listenuri = "tcp://0.0.0.0:5801"

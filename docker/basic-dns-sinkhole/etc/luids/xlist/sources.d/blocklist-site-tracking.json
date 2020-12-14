@@ -1,0 +1,21 @@
+[
+    {
+        "disabled": false,
+        "deprecated": false,
+        "removed": false,
+        "id": "blocklist.site-tracking",
+        "sources": [
+            {
+                "format": "hosts",
+                "resources": [
+                    "domain"
+                ],
+                "uri": "https://raw.githubusercontent.com/blocklistproject/Lists/master/tracking.txt"
+            }
+        ],
+        "transforms": {
+            "tldplusone": true
+        },
+        "update": "24h"
+    }
+]
