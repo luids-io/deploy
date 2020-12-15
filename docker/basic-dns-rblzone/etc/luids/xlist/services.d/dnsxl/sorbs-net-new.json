@@ -1,10 +1,12 @@
 [
     {
         "disabled": false,
-        "id": "spamcop.net",
+        "deprecated": false,
+        "removed": false,
+        "id": "sorbs.net-new",
         "class": "dnsxl",
-        "name": "SpamCop Blocking List",
-        "web": "http://spamcop.net/bl.shtml",
+        "name": "SORBS Spamhost (last 48 hours)",
+        "web": "http://www.sorbs.net/",
         "category": "blacklist",
         "tags": [
             "spam"
@@ -12,7 +14,7 @@
         "resources": [
             "ip4"
         ],
-        "source": "bl.spamcop.net",
+        "source": "new.spam.dnsbl.sorbs.net",
         "opts": {
             "resolvreason": true
         }

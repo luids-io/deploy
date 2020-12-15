@@ -1,5 +1,8 @@
 [
     {
+        "disabled": false,
+        "deprecated": false,
+        "removed": false,
         "id": "spamcop.net",
         "class": "dnsxl",
         "name": "SpamCop Blocking List",
@@ -13,7 +16,7 @@
         ],
         "source": "bl.spamcop.net",
         "opts": {
-            "reason": "found in 'spamcop.net'"
+            "resolvreason": true
         }
     }
 ]

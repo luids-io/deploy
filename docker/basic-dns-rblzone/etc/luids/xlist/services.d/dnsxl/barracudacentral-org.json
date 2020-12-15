@@ -1,10 +1,12 @@
 [
     {
         "disabled": false,
-        "id": "gbudb.net",
+        "deprecated": false,
+        "removed": false,
+        "id": "barracudacentral.org",
         "class": "dnsxl",
-        "name": "truncate.gbudb.net",
-        "web": "http://www.gbudb.com/truncate/index.jsp",
+        "name": "Barracuda Reputation Block List",
+        "web": "http://www.barracudacentral.org/rbl/",
         "category": "blacklist",
         "tags": [
             "spam"
@@ -12,7 +14,7 @@
         "resources": [
             "ip4"
         ],
-        "source": "truncate.gbudb.net",
+        "source": "b.barracudacentral.org",
         "opts": {
             "resolvreason": true
         }

@@ -1,5 +1,8 @@
 [
     {
+        "disabled": false,
+        "deprecated": false,
+        "removed": false,
         "id": "mailspike.net-bl",
         "class": "dnsxl",
         "name": "Mailspike Blacklist",
@@ -13,7 +16,7 @@
         ],
         "source": "bl.mailspike.net",
         "opts": {
-            "reason": "found in 'mailspike.net-bl'"
+            "resolvreason": true
         }
     }
 ]

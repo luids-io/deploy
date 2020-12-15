@@ -6,8 +6,7 @@ services:
     image: luids/xlistd
     volumes:
       - ./etc/luids:/etc/luids
-      - ./data/my-blacklist.xlist:/var/lib/luids/xlist/my-blacklist.xlist
-      - ./data/my-whitelist.xlist:/var/lib/luids/xlist/my-whitelist.xlist
+      - ./data:/var/lib/luids/xlist/local
 
   ludns:
     image: luids/ludns

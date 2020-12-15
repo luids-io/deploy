@@ -1,5 +1,8 @@
 [
     {
+        "disabled": false,
+        "deprecated": false,
+        "removed": false,
         "id": "gbudb.net",
         "class": "dnsxl",
         "name": "truncate.gbudb.net",
@@ -13,8 +16,7 @@
         ],
         "source": "truncate.gbudb.net",
         "opts": {
-            "retries": 2,
-            "reason": "found in 'gbudb.net'"
+            "resolvreason": true
         }
     }
 ]

@@ -1,5 +1,8 @@
 [
     {
+        "disabled": false,
+        "deprecated": false,
+        "removed": false,
         "id": "junkemailfilter.com-black",
         "class": "dnsxl",
         "name": "Hostkarma blacklist",
@@ -14,7 +17,7 @@
         ],
         "source": "black.junkemailfilter.com",
         "opts": {
-            "reason": "found in 'junkemailfilter.com-black'"
+            "resolvreason": true
         }
     }
 ]
