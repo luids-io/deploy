@@ -13,8 +13,7 @@ enable  = true
 service = "dns"
 
 [server]
-listenuri  = "tcp://0.0.0.0:5821"
-metrics    = true
+listenuri = "tcp://0.0.0.0:5821"
 
 [health]
 listenuri  = "tcp://0.0.0.0:8081"

@@ -1,0 +1,22 @@
+[
+    {
+        "disabled": false,
+        "deprecated": false,
+        "removed": false,
+        "id": "blocklist.site-abuse",
+        "sources": [
+            {
+                "format": "flat",
+                "resources": [
+                    "ip4",
+                    "domain"
+                ],
+		"uri": "https://raw.githubusercontent.com/blocklistproject/Lists/master/abuse.txt"
+            }
+        ],
+        "transforms": {
+            "tldplusone": true
+        },
+        "update": "24h"
+    }
+]

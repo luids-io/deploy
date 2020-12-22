@@ -1,7 +1,7 @@
 [
-    {
-        "id": "mongo1",
-        "class": "mongodb",
-        "url": "mongodb:27017"
-    }
+  {
+    "id": "mongo1",
+    "class": "mongodb",
+    "url": "mongodb://mongodb:27017/admin"
+  }
 ]

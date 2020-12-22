@@ -13,4 +13,4 @@ enable  = true
 service = "dns"
 
 [server]
-listenuri = "tcp://luarchive:5821"
+listenuri = "tcp://0.0.0.0:5821"

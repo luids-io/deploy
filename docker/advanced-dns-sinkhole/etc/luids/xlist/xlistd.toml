@@ -1,9 +1,16 @@
 [xlistd]
-datadir = "/var/lib/luids/xlist"
+datadir    = "/var/lib/luids/xlist"
 
 [xlistd.service]
-files      = [ "/etc/luids/xlist/service.json" ]
-dirs       = [ "/etc/luids/xlist/services.d"   ]
+dirs  = [ "/etc/luids/xlist/services.d/local",
+          "/etc/luids/xlist/services.d/file",
+          "/etc/luids/xlist/services.d/sblookup",
+          "/etc/luids/xlist/services.d" ]
+
+files = [ "/etc/luids/xlist/service.json" ]
+
+[xlistd.plugin.sblookup]
+apikey  = "PON_AQUI_TU_API_KEY"
 
 [server]
 listenuri = "tcp://0.0.0.0:5801"

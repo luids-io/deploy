@@ -1,0 +1,22 @@
+[
+    {
+        "disabled": false,
+        "deprecated": false,
+        "removed": false,
+        "id": "blocklist.site-ads",
+        "class": "file",
+        "name": "Blocklist Site ADS",
+        "web": "https://blocklist.site",
+        "category": "blacklist",
+        "tags": [
+            "ads"
+        ],
+        "resources": [
+            "domain"
+        ],
+        "opts": {
+            "autoreload": true,
+            "reason": "found in 'blocklist.site-ads'"
+        }
+    }
+]

@@ -1,0 +1,23 @@
+[
+    {
+        "disabled": false,
+        "deprecated": false,
+        "removed": false,
+        "id": "myip.ms",
+        "class": "file",
+        "name": "my-ip.ms ",
+        "web": "https://myip.ms",
+        "category": "blacklist",
+        "tags": [
+            "reputation"
+        ],
+        "resources": [
+            "ip4",
+            "ip6"
+        ],
+        "opts": {
+            "autoreload": true,
+            "reason": "found in 'myip.ms'"
+        }
+    }
+]

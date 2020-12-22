@@ -1,0 +1,22 @@
+[
+    {
+        "disabled": false,
+        "deprecated": false,
+        "removed": false,
+        "id": "abuse.ch-urlhaus",
+        "sources": [
+            {
+                "format": "hosts",
+                "resources": [
+                    "domain"
+                ],
+                "uri": "https://urlhaus.abuse.ch/downloads/hostfile/",
+                "filename": "hostfile.txt"
+            }
+        ],
+        "transforms": {
+            "tldplusone": true
+        },
+        "update": "1h"
+    }
+]

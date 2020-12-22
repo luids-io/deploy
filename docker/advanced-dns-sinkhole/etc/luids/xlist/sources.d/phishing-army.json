@@ -1,6 +1,8 @@
 [
     {
         "disabled": false,
+        "deprecated": false,
+        "removed": false,
         "id": "phishing.army",
         "sources": [
             {
@@ -8,9 +10,12 @@
                 "resources": [
                     "domain"
                 ],
-                "uri": "https://phishing.army/download/phishing_army_blocklist_extended.txt"
+		"uri": "https://phishing.army/download/phishing_army_blocklist_extended.txt"
             }
         ],
+        "transforms": {
+            "tldplusone": true
+        },
         "update": "6h"
     }
 ]

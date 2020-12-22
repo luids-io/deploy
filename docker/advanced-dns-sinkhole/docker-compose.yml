@@ -32,11 +32,7 @@ services:
     volumes:
       - ./etc/luids:/etc/luids
       - xlistdb:/var/lib/luids/xlist
-      - ./data/my-blacklist-malware.xlist:/var/lib/luids/xlist/my-blacklist-malware.xlist
-      - ./data/my-blacklist-phising.xlist:/var/lib/luids/xlist/my-blacklist-phising.xlist
-      - ./data/my-blacklist-reputation.xlist:/var/lib/luids/xlist/my-blacklist-reputation.xlist
-      - ./data/my-blacklist-ads.xlist:/var/lib/luids/xlist/my-blacklist-ads.xlist
-      - ./data/my-whitelist.xlist:/var/lib/luids/xlist/my-whitelist.xlist
+      - ./data:/var/lib/luids/xlist/local
 
   xlget:
     image: luids/xlget
